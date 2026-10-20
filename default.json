@@ -1,0 +1,114 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "docker:pinDigests"
+  ],
+  "timezone": "Europe/Prague",
+  "schedule": [
+    "* 0-5 * * 1"
+  ],
+  "platformAutomerge": false,
+  "automergeSchedule": [
+    "* 8-14 * * 1-4"
+  ],
+  "automerge": false,
+  "minimumReleaseAge": "3 days",
+  "rebaseWhen": "behind-base-branch",
+  "dependencyDashboard": true,
+  "prConcurrentLimit": 5,
+  "semanticCommits": "disabled",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "* 0-5 1 * *"
+    ]
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true
+  },
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "Batch minor updates for manual review; major updates remain separate.",
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "automerge": false,
+      "groupName": "reviewed dependencies"
+    },
+    {
+      "description": "Batch patch updates, digest refreshes and pins; merge only after required checks pass during the Prague automerge window.",
+      "matchUpdateTypes": [
+        "patch",
+        "digest",
+        "pin",
+        "pinDigest"
+      ],
+      "automerge": true,
+      "groupName": "automerged dependencies"
+    },
+    {
+      "description": "Digest refreshes and digest pins do not wait for a release timestamp.",
+      "matchUpdateTypes": [
+        "digest",
+        "pinDigest"
+      ],
+      "minimumReleaseAge": null
+    },
+    {
+      "description": "Expose major updates to the operations agent without replacing repository labels.",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "addLabels": [
+        "deps:major"
+      ]
+    },
+    {
+      "description": "Expose minor updates to the operations agent without replacing repository labels.",
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "addLabels": [
+        "deps:minor"
+      ]
+    },
+    {
+      "description": "Expose patch updates to the operations agent without replacing repository labels.",
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "addLabels": [
+        "deps:patch"
+      ]
+    },
+    {
+      "description": "Expose digest updates to the operations agent without replacing repository labels.",
+      "matchUpdateTypes": [
+        "digest"
+      ],
+      "addLabels": [
+        "deps:digest"
+      ]
+    },
+    {
+      "description": "Expose pin updates to the operations agent without replacing repository labels.",
+      "matchUpdateTypes": [
+        "pin"
+      ],
+      "addLabels": [
+        "deps:pin"
+      ]
+    },
+    {
+      "description": "Expose pinDigest updates to the operations agent without replacing repository labels.",
+      "matchUpdateTypes": [
+        "pinDigest"
+      ],
+      "addLabels": [
+        "deps:pinDigest"
+      ]
+    }
+  ]
+}
