@@ -18,6 +18,9 @@
   "dependencyDashboard": true,
   "prConcurrentLimit": 5,
   "semanticCommits": "disabled",
+  "constraints": {
+    "npm": "<12"
+  },
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": [
